@@ -30,6 +30,10 @@ test:
     paths:
       - build
       - .gradle
+  artifacts:
+    paths:
+      - build/libs/app.jar
+
 
 build:
    image: docker:latest
