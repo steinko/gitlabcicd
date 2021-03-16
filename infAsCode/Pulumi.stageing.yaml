@@ -1,0 +1,3 @@
+config:
+  gcp:project: springboot22
+  gcp:zone: europe-west4-a
