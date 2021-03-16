@@ -7,9 +7,6 @@
 # is usually a priority over speed in CI environments. Using a fresh
 # runtime for each build is more reliable since the runtime is completely
 # isolated from any previous builds.
-default:
-  image: openjdk:8.0-slim
-
 variables:
   GRADLE_OPTS: "-Dorg.gradle.daemon=false"
 
