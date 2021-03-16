@@ -8,15 +8,16 @@
 # runtime for each build is more reliable since the runtime is completely
 # isolated from any previous builds.
 default:
-  image: openjdk:15.0-slim
+  image: openjdk:8.0-slim
 
 variables:
   GRADLE_OPTS: "-Dorg.gradle.daemon=false"
 
 stages:
   - test
-  - build
+  - package
   - deploy
+  - systemtest
 
 before_script:
   - export GRADLE_USER_HOME=`pwd`/.gradle
@@ -35,11 +36,11 @@ test:
       - build/libs/app.jar
 
 
-build:
+package:
    image: docker:latest
    services:
      - docker:dind
-   stage: build
+   stage: package
    script:
      - docker build -t steinko/gitlabcicd .
      - docker login -u steinko -p RoxyMusic11
