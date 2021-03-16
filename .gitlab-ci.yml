@@ -44,4 +44,4 @@ package:
    script:
      - docker build -t steinko/gitlabcicd .
      - docker login -u steinko -p RoxyMusic11
-     - docker push steinko/gitlabcdci
+     - docker push steinko/gitlabcicd
