@@ -1,11 +1,7 @@
 # This is the Gradle build system for JVM applications
 # https://gradle.org/
 # https://github.com/gradle/gradle
-image: 
-  gradle:latest
-  docker:latest
-services:
-  - docker:dind
+
 
 # Disable the Gradle daemon for Continuous Integration servers as correctness
 # is usually a priority over speed in CI environments. Using a fresh
@@ -24,6 +20,7 @@ before_script:
   - docker info
 
 test:
+  image: gradle:latest
   stage: test
   script: gradle check
   cache:
@@ -34,6 +31,9 @@ test:
       - .gradle
 
 build:
+   image: docker:latest
+   services:
+     - docker:dind
    stage: build
    script:
      - docker build -t steinko/gitlabcicd .
