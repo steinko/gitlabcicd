@@ -33,7 +33,7 @@ test:
       - .gradle
   artifacts:
     paths:
-      - build/libs/app.jar
+      - ./build/libs/gitlabcicd-0.0.1-SNAPSHOT.jar 
 
 
 package:
