@@ -2,7 +2,7 @@
 # https://gradle.org/
 # https://github.com/gradle/gradle
 image: gradle:latest
-       docker:latest
+
 # Disable the Gradle daemon for Continuous Integration servers as correctness
 # is usually a priority over speed in CI environments. Using a fresh
 # runtime for each build is more reliable since the runtime is completely
@@ -17,7 +17,7 @@ stages:
 
 before_script:
   - export GRADLE_USER_HOME=`pwd`/.gradle
-
+  - docker info
 
 test:
   stage: test
