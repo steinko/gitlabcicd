@@ -47,13 +47,13 @@ package:
 deploy:
   stage: deploy
   before_script:
-    - chmod +x ./infAsCode/scripts/*.sh
+    - chmod +x ./infAsCode/script/*.sh
     - apk update
     - apk add bash
     - apk add curl
-    - ./infAsCode/scripts/setup.sh
+    - ./infAsCode/script/setup.sh
   script:
-    - ./infAsCode/scripts/run-pulumi.sh
+    - ./infAsCode/script/run-pulumi.sh
   # Create an artifact archive with just the pulumi log file,
   # which is created using console-redirection in run-pulumi.sh.
   artifacts:
