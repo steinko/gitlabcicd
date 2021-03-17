@@ -4,16 +4,6 @@ import * as gcp from "@pulumi/gcp";
 import * as config from "./config"
 
 
-const kubeconfigFile = process.env.KUBECONFIG;
-console.log("kubeconfigfile",kubeconfigFile)
-const kubeUrl = process.env.KUBE_URL;
-console.log("kubeurl",kubeUrl)
-const kubeToken = process.env.KUBE_TOKEN;
-console.log("kubeToken",kubeToken)
-const kubePemFile = process.env.KUBE_CA_PEM_FILE;
-console.log("kubePemFile",kubePemFile)
-const kubeNameSpace = process.env.KUBE_NAMESPACE;
-console.log("kubeNameSpace",kubeNameSpace)
 
 const appLabels = { app: "nginx" };
 const deployment = new k8s.apps.v1.Deployment("nginx", {
