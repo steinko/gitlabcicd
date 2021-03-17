@@ -1,6 +1,7 @@
 import * as k8s from "@pulumi/kubernetes";
 import * as pulumi from "@pulumi/pulumi";
 import * as gcp from "@pulumi/gcp";
+import * as config from "./config"
 
 
 const appLabels = { app: "nginx" };
@@ -19,11 +20,16 @@ const deployment = new k8s.apps.v1.Deployment("nginx", {
 // Create a GKE cluster
 const engineVersion = gcp.container.getEngineVersions().then(v => v.latestMasterVersion);
 const cluster = new gcp.container.Cluster("cluster", {
-    initialNodeCount: 2,
+	project: config.cloudProject,
+	clusterAutoscaling: {enabled: true, resourceLimits:[ {resourceType: 'cpu', minimum:1 ,maximum:20 },
+	                                                     {resourceType: 'memory', minimum:1 ,maximum:64 }  
+                                                       ]
+                        },
+    initialNodeCount: 1,
     minMasterVersion: engineVersion,
     nodeVersion: engineVersion,
     nodeConfig: {
-        machineType: "n1-standard-1",
+        machineType: "e2-medium",
         oauthScopes: [
             "https://www.googleapis.com/auth/compute",
             "https://www.googleapis.com/auth/devstorage.read_only",
@@ -31,6 +37,7 @@ const cluster = new gcp.container.Cluster("cluster", {
             "https://www.googleapis.com/auth/monitoring"
         ],
     },
+   location: config.cloudLocation,
 });
 
 // Export the Cluster name

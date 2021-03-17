@@ -1,3 +1,5 @@
 config:
+  deploy:cloudLocation: europe-west4-a
+  deploy:cloudProject: springboot22
   gcp:project: springboot22
   gcp:zone: europe-west4-a
