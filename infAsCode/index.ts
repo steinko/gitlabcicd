@@ -11,7 +11,7 @@ console.log("kubeurl",kubeUrl)
 const kubeToken = process.env.KUBE_TOKEN;
 console.log("kubeToken",kubeToken)
 const kubePemFile = process.env.KUBE_CA_PEM_FILE;
-console.log("kubePemFile",kubeNameSpace)
+console.log("kubePemFile",kubePemFile)
 const kubeNameSpace = process.env.KUBE_NAMESPACE;
 console.log("kubeNameSpace",kubeNameSpace)
 
